@@ -13,7 +13,7 @@
 			</aside>
 
 			<aside class="widget">
-				<h2>Recent Films</h2>
+				<h2><?php _e( 'Recent Films', 'unite' ); ?></h2>
 				<ul>
 				<?php
 				    $recent_posts = wp_get_recent_posts(array('post_type'=>'films'));

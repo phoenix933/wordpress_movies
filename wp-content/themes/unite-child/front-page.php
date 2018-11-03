@@ -8,6 +8,10 @@
 
 	<div id="primary" class="content-area col-sm-12 col-md-12">
 		<main id="main" class="site-main" role="main">
+            <?php
+                $paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
+                query_posts( array('post_type'=>'films','paged'=>$paged ) );
+            ?>
 
 			<?php while ( have_posts() ) : the_post(); ?>
 

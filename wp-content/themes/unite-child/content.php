@@ -38,6 +38,24 @@
 				'after'  => '</div>',
 			) );
 		?>
+
+		<?php
+			$id = get_the_ID();
+			$countries = wp_get_post_terms($id, 'country');
+			$genres = wp_get_post_terms($id, 'genre');
+		?><br>
+		<p><?php _e( 'Country', 'unite' ); ?>: <?php
+			foreach ($countries as $country) {
+				echo $country->name." ";
+			}
+		?></p>
+		<p><?php _e( 'Genre', 'unite' ); ?>: <?php
+			foreach ($genres as $genre) {
+				echo $genre->name." ";
+			}
+		?></p>
+		<p><?php _e( 'Ticket Price', 'unite' ); ?>: <?php echo get_post_meta($id, 'Ticket Price', true); ?></p>
+		<p><?php _e( 'Release Date', 'unite' ); ?>: <?php echo get_post_meta($id, 'Release Date', true); ?></p>
 	</div><!-- .entry-content -->
 	<?php endif; ?>
 

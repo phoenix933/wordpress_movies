@@ -19,30 +19,17 @@ get_header(); ?>
 		<?php if ( have_posts() ) : ?>
 
 			<?php /* Start the Loop */ ?>
-			<?php
-				$recent_posts = wp_get_recent_posts(array('post_type'=>'films'));
-				foreach( $recent_posts as $recent ){
-			?>
+			<?php while ( have_posts() ) : the_post(); ?>
 
-				<article id="film-1" class="film-1 post type-post status-publish format-standard hentry category-uncategorized">
-					<header class="entry-header page-header">
+				<?php
+					/* Include the Post-Format-specific template for the content.
+					 * If you want to override this in a child theme, then include a file
+					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
+					 */
+					get_template_part( 'content', get_post_format() );
+				?>
 
-						<a href="<?php echo get_permalink($recent["ID"]); ?>" title="<?php echo esc_attr($recent["post_title"]); ?>"></a>
-
-						<h2 class="entry-title"><a href="<?php echo get_permalink($recent["ID"]); ?>" rel="bookmark"><?php echo esc_attr($recent["post_title"]); ?></a></h2>
-
-						<!-- .entry-meta -->
-					</header><!-- .entry-header -->
-
-					<div class="entry-content">
-						<p><?php echo esc_attr($recent["post_content"]); ?></p>
-
-					</div><!-- .entry-content -->
-					<!-- .entry-meta -->
-					<hr class="section-divider">
-				</article>
-
-			<?php } ?>
+			<?php endwhile; ?>
 
 			<?php unite_paging_nav(); ?>
 
